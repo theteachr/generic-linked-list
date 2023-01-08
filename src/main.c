@@ -48,7 +48,12 @@ void prepend(struct GenLinkedList* list, void* data) {
 }
 
 void print_list(struct GenLinkedList* list, void (*print)(void*)) {
-	struct Node* t = list->head;
+	if (list->head->next == NULL) {
+		printf("[]\n");
+		return;
+	}
+
+	struct Node* t = list->head->next;
 
 	printf("[");
 
