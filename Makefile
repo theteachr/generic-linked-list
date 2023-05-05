@@ -1,2 +1,5 @@
+CC = gcc
+CFLAGS = -g
+
 main: src/main.c
-	gcc -g -o $@ $<
+	$(CC) $(CFLAGS) -o $@ $<
