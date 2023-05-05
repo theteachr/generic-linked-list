@@ -68,15 +68,15 @@ void pop(struct List* list) {
 }
 
 /*  [.] <-> [.]
- *   B       C 
- *   C       B
+ *   b       c 
+ *   c       b
  */
 
 /* After pushing
  *
  *  [.] <-> [.] <-> [.]
- *   X       B       C 
- *   B      X^C      B
+ *   x       b       c 
+ *   b      x^c      b
  */
 
 void prepend(struct List* list, void* data) {
