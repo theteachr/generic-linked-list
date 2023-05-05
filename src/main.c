@@ -67,6 +67,14 @@ void pop(struct List* list) {
 	free(a);
 }
 
+void destroy_list(struct List* list) {
+	while (list->head) {
+		pop(list);
+	}
+
+	free(list);
+}
+
 /*  [.] <-> [.]
  *   b       c 
  *   c       b
@@ -152,7 +160,11 @@ int main(void) {
 	struct List* empty = init_gen_linked_list(sizeof(int));
 
 	print_list(numbers->head, print_int);
+
 	print_list(names->head, print_string);
 	print_list(empty->head, print_int);
-	print_list(names->tail, print_string);
+
+	destroy_list(names);
+	destroy_list(numbers);
+	destroy_list(empty);
 }

@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -g
+CFLAGS = -g -fsanitize=address
 
 main: src/main.c
 	$(CC) $(CFLAGS) -o $@ $<
