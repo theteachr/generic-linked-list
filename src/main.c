@@ -3,7 +3,7 @@
 
 struct Node {
 	void *data;
-	struct Node* next;
+	struct Node* n_xor_p;
 };
 
 struct GenLinkedList {
@@ -15,7 +15,7 @@ struct Node* get_node(void* data) {
 	struct Node* node = malloc(sizeof(struct Node));
 
 	node->data = data;
-	node->next = NULL;
+	node->n_xor_p = NULL;
 
 	return node;
 }
@@ -23,44 +23,44 @@ struct Node* get_node(void* data) {
 struct GenLinkedList* init_gen_linked_list(size_t data_size) {
 	struct GenLinkedList* list = malloc(sizeof(struct GenLinkedList));
 
-	list->head = get_node(NULL);
+	list->head = NULL;
 	list->data_size = data_size;
 
 	return list;
 }
 
 void pop(struct GenLinkedList* list) {
-	if (list->head->next == NULL) {
+	if (list->head == NULL) {
 		return;
 	}
 
-	struct Node* node = list->head->next;
-	list->head->next = node->next;
+	struct Node* temp = list->head;
+	list->head = temp->n_xor_p;
 
-	free(node);
+	free(temp);
 }
 
 void prepend(struct GenLinkedList* list, void* data) {
 	struct Node* node = get_node(data);
 
-	node->next = list->head->next;
-	list->head->next = node;
+	node->n_xor_p = list->head;
+	list->head = node;
 }
 
 void print_list(struct GenLinkedList* list, void (*print)(void*)) {
-	if (list->head->next == NULL) {
+	if (list->head == NULL) {
 		printf("[]\n");
 		return;
 	}
 
-	struct Node* t = list->head->next;
+	struct Node* t = list->head;
 
 	printf("[");
 
-	while (t->next) {
+	while (t->n_xor_p) {
 		print(t->data);
 		printf(", ");
-		t = t->next;
+		t = t->n_xor_p;
 	}
 
 	print(t->data);
