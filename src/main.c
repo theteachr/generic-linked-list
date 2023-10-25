@@ -8,7 +8,6 @@ struct Node {
 
 struct GenLinkedList {
 	struct Node* head;
-	size_t data_size;
 };
 
 struct Node* get_node(void* data) {
@@ -20,12 +19,9 @@ struct Node* get_node(void* data) {
 	return node;
 }
 
-struct GenLinkedList* init_gen_linked_list(size_t data_size) {
+struct GenLinkedList* init_gen_linked_list() {
 	struct GenLinkedList* list = malloc(sizeof(struct GenLinkedList));
-
 	list->head = get_node(NULL);
-	list->data_size = data_size;
-
 	return list;
 }
 
@@ -76,8 +72,8 @@ void print_string(void* string) {
 }
 
 int main(void) {
-	struct GenLinkedList* numbers = init_gen_linked_list(sizeof(int));
-	struct GenLinkedList* names = init_gen_linked_list(sizeof(char*));
+	struct GenLinkedList* numbers = init_gen_linked_list();
+	struct GenLinkedList* names = init_gen_linked_list();
 	int nums[] = {1, 2, 3};
 
 	char* viewers[] = {
@@ -101,5 +97,5 @@ int main(void) {
 
 	print_list(numbers, print_int);
 	print_list(names, print_string);
-	print_list(init_gen_linked_list(sizeof(int)), print_int);
+	print_list(init_gen_linked_list(), print_int);
 }
